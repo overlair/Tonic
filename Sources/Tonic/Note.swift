@@ -84,15 +84,18 @@ public struct Note: Equatable, Hashable, Codable {
     public var noteNumber: Int8 {
         let octaveBounds = ((octave ) * 12) ... ((octave + 1) * 12)
         var note = Int(noteClass.letter.baseNote) + Int(noteClass.accidental.rawValue)
-        if noteClass.letter == .B && noteClass.accidental.rawValue > 0 {
-            note -= 12
-        }
-        if noteClass.letter == .C && noteClass.accidental.rawValue < 0 {
-            note += 12
-        }
-        while !octaveBounds.contains(note) {
-            note += 12
-        }
+//        if noteClass.letter == .B && noteClass.accidental.rawValue > 0 {
+//            note -= 12
+//        }
+//        if noteClass.letter == .C && noteClass.accidental.rawValue < 0 {
+//            note += 12
+//        }
+//        while !octaveBounds.contains(note) {
+//            note += 12
+//        }
+//        
+        note += octave * 12
+        // clamp this
         return Int8(note)
     }
 
